@@ -18,20 +18,10 @@ app.get("/", (req, res) => {
   res.render("index", { restaurants: restaurantList.results });
 });
 
-// app.get("/movies/:movie_id", (req, res) => {
-//   const targetMovie = movieList.results.find(
-//     (movie) => movie.id.toString() === req.params.movie_id
-//   );
-//   res.render("show", { movie: targetMovie });
-// });
-
-// app.get("/search", (req, res) => {
-//   const keyword = req.query.keyword;
-//   movies = movieList.results.filter((movie) =>
-//     movie.title.toLowerCase().includes(keyword.toLowerCase())
-//   );
-//   res.render("index", { movies, keyword });
-// });
+// app/get('/restaurant/:id', (req, res) =>{
+//   const re
+//   res.render('show', {restaurant})
+// })
 
 //start and listen on the Express server
 app.listen(port, () => {
