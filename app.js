@@ -23,8 +23,17 @@ app.get("/restaurants/:id", (req, res) => {
   const restaurant = restaurantList.results.find(
     (ele) => ele.id.toString() === restaurantId
   );
-  console.log(restaurantId, restaurant);
   res.render("show", { restaurant });
+});
+
+app.get("/search", (req, res) => {
+  const keyword = req.query.keyword;
+  const restaurants = restaurantList.results.filter(
+    (ele) =>
+      ele.name.toLowerCase().includes(keyword) ||
+      ele.name_en.toLowerCase().includes(keyword)
+  );
+  res.render("index", { restaurants, keyword });
 });
 
 //start and listen on the Express server
