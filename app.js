@@ -1,10 +1,26 @@
 //require packages used in the project
 const { request } = require("express");
-const express = require("express");
-const app = express();
-const exphbs = require("express-handlebars");
-const port = 3000;
 const restaurantList = require("./restaurant.json");
+const express = require("express");
+const exphbs = require("express-handlebars");
+const mongoose = require("mongoose");
+
+const app = express();
+const port = 3000;
+
+//set up db connection
+mongoose.connect("mongodb://localhost/restaurant-list");
+
+//get db connection detail
+const db = mongoose.connection;
+
+db.on("error", () => {
+  console.log("fail to connect to mongo db!");
+});
+
+db.once("open", () => {
+  console.log("connected to mongo db!");
+});
 
 //express template engine
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
