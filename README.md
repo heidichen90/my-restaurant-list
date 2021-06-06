@@ -4,6 +4,7 @@ my restaurant list is a website which provide restaurant detail. This website is
 
 ![](images/my-restaurant-list1.png)
 ![](images/my-restaurant-list2.png)
+![](images/my-restaurant-list3.png)
 
 ## Feature
 
@@ -13,7 +14,7 @@ my restaurant list is a website which provide restaurant detail. This website is
 - Banner shows the COVID-19 message
 - Edit existing restaurant record
 - Delete existing restaurant record
-- Add new restaurant 
+- Add new restaurant
 
 ## Getting Started
 
