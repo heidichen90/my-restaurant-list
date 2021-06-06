@@ -1,6 +1,7 @@
 //require packages used in the project
 const { request } = require("express");
 const restaurantList = require("./restaurant.json");
+const Restaurant = require("./models/restaurants");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const mongoose = require("mongoose");
@@ -9,7 +10,10 @@ const app = express();
 const port = 3000;
 
 //set up db connection
-mongoose.connect("mongodb://localhost/restaurant-list");
+mongoose.connect("mongodb://localhost/restaurant-list", {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 
 //get db connection detail
 const db = mongoose.connection;
@@ -29,9 +33,55 @@ app.set("view engine", "handlebars");
 //setup static files
 app.use(express.static("public"));
 
+//setup body-parser
+app.use(express.urlencoded({ extended: true }));
+
 //routes setting
 app.get("/", (req, res) => {
-  res.render("index", { restaurants: restaurantList.results });
+  Restaurant.find()
+    .lean()
+    .then((restaurants) => {
+      res.render("index", { restaurants });
+    })
+    .catch((error) => console.log(error));
+});
+
+//add new restaurant page
+app.get("/restaurants/new", (req, res) => {
+  res.render("new");
+});
+
+app.post("/restaurants", (req, res) => {
+  const {
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description,
+  } = req.body;
+  const restaurants = new Restaurant({
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description,
+  });
+  return restaurants
+    .save()
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 app.get("/restaurants/:id", (req, res) => {
