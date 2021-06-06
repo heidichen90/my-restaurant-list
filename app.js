@@ -52,28 +52,7 @@ app.get("/restaurants/new", (req, res) => {
 });
 
 app.post("/restaurants", (req, res) => {
-  const {
-    name,
-    name_en,
-    category,
-    image,
-    location,
-    phone,
-    google_map,
-    rating,
-    description,
-  } = req.body;
-  const restaurants = new Restaurant({
-    name,
-    name_en,
-    category,
-    image,
-    location,
-    phone,
-    google_map,
-    rating,
-    description,
-  });
+  const restaurants = new Restaurant({ ...req.body });
   return restaurants
     .save()
     .then(() => {
@@ -84,12 +63,38 @@ app.post("/restaurants", (req, res) => {
     });
 });
 
+//show one restaurant
 app.get("/restaurants/:id", (req, res) => {
   const restaurantId = req.params.id;
   return Restaurant.findById(restaurantId)
     .lean()
     .then((restaurant) => {
       res.render("show", { restaurant });
+    });
+});
+
+//edit one restaurant
+app.get("/restaurants/:id/edit", (req, res) => {
+  const restaurantId = req.params.id;
+  return Restaurant.findById(restaurantId)
+    .lean()
+    .then((restaurant) => {
+      res.render("edit", { restaurant });
+    });
+});
+
+app.post("/restaurants/:id/edit", (req, res) => {
+  const restaurantId = req.params.id;
+  return Restaurant.findById(restaurantId)
+    .then((restaurant) => {
+      Object.assign(restaurant, { ...req.body });
+      return restaurant.save();
+    })
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((error) => {
+      console.log(error);
     });
 });
 

@@ -18,28 +18,7 @@ db.on("error", () => {
 db.once("open", () => {
   console.log("connected to mongo db!");
   restaurantList.results.forEach((data) => {
-    const {
-      name,
-      name_en,
-      category,
-      image,
-      location,
-      phone,
-      google_map,
-      rating,
-      description,
-    } = data;
-    Restaurant.create({
-      name,
-      name_en,
-      category,
-      image,
-      location,
-      phone,
-      google_map,
-      rating,
-      description,
-    });
+    Restaurant.create({ ...data });
   });
   console.log("done");
 });
