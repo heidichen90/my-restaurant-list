@@ -86,10 +86,11 @@ app.post("/restaurants", (req, res) => {
 
 app.get("/restaurants/:id", (req, res) => {
   const restaurantId = req.params.id;
-  const restaurant = restaurantList.results.find(
-    (ele) => ele.id.toString() === restaurantId
-  );
-  res.render("show", { restaurant });
+  return Restaurant.findById(restaurantId)
+    .lean()
+    .then((restaurant) => {
+      res.render("show", { restaurant });
+    });
 });
 
 app.get("/search", (req, res) => {
