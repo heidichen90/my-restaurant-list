@@ -11,6 +11,9 @@ my restaurant list is a website which provide restaurant detail. This website is
 - Use search bar to filter restaurant
 - Click on each restaurant card will show more detail and a short description. If there is no match result, will display error message
 - Banner shows the COVID-19 message
+- Edit existing restaurant record
+- Delete existing restaurant record
+- Add new restaurant 
 
 ## Getting Started
 
@@ -36,12 +39,18 @@ The website should start running on
 
     http://localhost:3000/
 
+Load up seed data
+
+    npm run seed
+
 ## Built With
 
 - [Node.js](https://nodejs.org/en/) (v10.15.0)
 - [Express](https://expressjs.com/) (v4.17.1)
 - [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) (v5.3.2)
 - [Bootstrap](https://getbootstrap.com/) (v4.3.1)
+- [Mongoose ODM](https://mongoosejs.com/) (v5.12.13)
+- [Mongodb](https://www.mongodb.com/) (v4.2.14)
 
 ## Author
 
