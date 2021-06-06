@@ -1,6 +1,6 @@
 //require packages used in the project
-const { request } = require("express");
-const restaurantList = require("./restaurant.json");
+// const { request } = require("express");
+// const restaurantList = require("./restaurant.json");
 const Restaurant = require("./models/restaurants");
 const express = require("express");
 const exphbs = require("express-handlebars");
@@ -98,14 +98,36 @@ app.post("/restaurants/:id/edit", (req, res) => {
     });
 });
 
+//delet one restaurant
+app.post("/restaurants/:id/delete", (req, res) => {
+  const restaurantId = req.params.id;
+  return Restaurant.findById(restaurantId)
+    .then((restaurant) => {
+      return restaurant.remove();
+    })
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
 app.get("/search", (req, res) => {
-  const keyword = req.query.keyword;
-  const restaurants = restaurantList.results.filter(
-    (ele) =>
-      ele.name.toLowerCase().includes(keyword) ||
-      ele.name_en.toLowerCase().includes(keyword)
-  );
-  res.render("index", { restaurants, keyword });
+  const keyword = req.query.keyword.toLowerCase();
+  if (keyword === "") {
+    res.redirect("/");
+  }
+  return Restaurant.find()
+    .lean()
+    .then((restaurants) => {
+      const restaurantResult = restaurants.filter(
+        (ele) =>
+          ele.name.toLowerCase().includes(keyword) ||
+          ele.name_en.toLowerCase().includes(keyword)
+      );
+      res.render("index", { restaurants: restaurantResult, keyword });
+    });
 });
 
 //start and listen on the Express server
