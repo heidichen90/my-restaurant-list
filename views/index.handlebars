@@ -3,8 +3,9 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
+      <h4 class="mb-2">尋找餐廳：</h4>
+      <div class='controls'>
+      <form action="/search" class='controls-searchbar'>
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button" >
           <div class="input-group-append">
@@ -12,9 +13,21 @@
           </div>
         </div>
       </form>
+      <div class="dropdown" class='controls-dropdown'>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Dropdown button
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
+
 
 <!-- restaurant list -->
 <div class="container mt-5">

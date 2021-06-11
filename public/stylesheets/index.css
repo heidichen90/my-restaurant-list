@@ -45,6 +45,16 @@
   height: 20px;
 }
 
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls-searchbar {
+  margin-right: 10px;
+  flex-grow: 2;
+}
+
 @media screen and (max-width: 992px) {
   .card img {
     height: 115px;
