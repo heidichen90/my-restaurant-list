@@ -54,7 +54,7 @@
                   <span class='restaruant-button'>
                   <a href="/restaurants/{{this._id}}/edit" class="btn btn-link btn-sm" tabindex="-1" role="button" aria-disabled="true">Edit</a>
 
-                  <form action="/restaurants/{{this._id}}/delete" method="POST" style="display: inline;">
+                  <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
                     <button class='btn btn-outline-danger btn-sm'type="submit">Delete</button>
                   </form>
                   </span>

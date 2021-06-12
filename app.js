@@ -1,10 +1,9 @@
-//require packages used in the project
-// const { request } = require("express");
-// const restaurantList = require("./restaurant.json");
+//require packages
 const Restaurant = require("./models/restaurants");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const mongoose = require("mongoose");
+const methodOverride = require("method-override");
 
 const app = express();
 const port = 3000;
@@ -35,6 +34,10 @@ app.use(express.static("public"));
 
 //setup body-parser
 app.use(express.urlencoded({ extended: true }));
+
+//set up method override
+// override with POST having ?_method=DELETE
+app.use(methodOverride("_method"));
 
 //routes setting
 app.get("/", (req, res) => {
@@ -83,7 +86,7 @@ app.get("/restaurants/:id/edit", (req, res) => {
     });
 });
 
-app.post("/restaurants/:id/edit", (req, res) => {
+app.put("/restaurants/:id", (req, res) => {
   const restaurantId = req.params.id;
   return Restaurant.findById(restaurantId)
     .then((restaurant) => {
@@ -99,7 +102,7 @@ app.post("/restaurants/:id/edit", (req, res) => {
 });
 
 //delet one restaurant
-app.post("/restaurants/:id/delete", (req, res) => {
+app.delete("/restaurants/:id", (req, res) => {
   const restaurantId = req.params.id;
   return Restaurant.findById(restaurantId)
     .then((restaurant) => {
