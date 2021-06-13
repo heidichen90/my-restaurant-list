@@ -1,30 +1,11 @@
-//require packages
-// const Restaurant = require("./models/restaurants");
 const express = require("express");
 const exphbs = require("express-handlebars");
-const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const routes = require("./routes");
+require("./config/mongoose");
 
 const app = express();
 const port = 3000;
-
-//set up db connection
-mongoose.connect("mongodb://localhost/restaurant-list", {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-});
-
-//get db connection detail
-const db = mongoose.connection;
-
-db.on("error", () => {
-  console.log("fail to connect to mongo db!");
-});
-
-db.once("open", () => {
-  console.log("connected to mongo db!");
-});
 
 //express template engine
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
