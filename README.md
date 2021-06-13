@@ -2,9 +2,7 @@
 
 my restaurant list is a website which provide restaurant detail. This website is built based on Node.js and Express
 
-![](images/my-restaurant-list1.png)
-![](images/my-restaurant-list2.png)
-![](images/my-restaurant-list3.png)
+![](images/my-redtaurant-list2.png)
 
 ## Feature
 
