@@ -13,16 +13,18 @@
           </div>
         </div>
       </form>
-      <div class="dropdown" class='controls-dropdown'>
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Dropdown button
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Sort by
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="/sort/name_en/asc">A - Z</a></li>
+          <li><a class="dropdown-item" href="/sort/name_en/desc">Z - A</a></li>
+          <li><a class="dropdown-item" href="/sort/category/asc">類別</a></li>
+          <li><a class="dropdown-item" href="/sort/location/asc">地區</a></li>
+          <li><a class="dropdown-item" href="/sort/rating/desc">Rating</a></li>
+        </div>
       </div>
     </div>
   </div>
@@ -36,6 +38,7 @@
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
             {{#each restaurants}}
+            <div class='restaurant'>
             <a href="/restaurants/{{this._id}}" class="text-secondary" style="text-decoration: none;">
               <div class="card mb-3">
                 <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
@@ -60,6 +63,7 @@
                   </span>
                   </div>
                 </div>
+              </div>
               </div>
             {{/each}}
       </div>
