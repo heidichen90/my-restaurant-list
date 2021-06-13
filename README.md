@@ -15,6 +15,7 @@ my restaurant list is a website which provide restaurant detail. This website is
 - Edit existing restaurant record
 - Delete existing restaurant record
 - Add new restaurant
+- Sory by name A-Z, name Z-A, catrogry, rating, location
 
 ## Getting Started
 
@@ -52,6 +53,7 @@ Load up seed data
 - [Bootstrap](https://getbootstrap.com/) (v4.3.1)
 - [Mongoose ODM](https://mongoosejs.com/) (v5.12.13)
 - [Mongodb](https://www.mongodb.com/) (v4.2.14)
+- [method-override](https://www.npmjs.com/package/method-override) (v3.0.0)
 
 ## Author
 
