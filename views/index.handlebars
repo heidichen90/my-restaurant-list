@@ -13,6 +13,8 @@
           </div>
         </div>
       </form>
+      {{#if keyword}}
+      {{else}}
       <div class="dropdown">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -26,6 +28,7 @@
           <li><a class="dropdown-item" href="/sort/rating/desc">Rating</a></li>
         </div>
       </div>
+      {{/if}}
     </div>
   </div>
 </div>
