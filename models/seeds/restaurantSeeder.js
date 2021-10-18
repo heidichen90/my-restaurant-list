@@ -1,6 +1,6 @@
 const db = require("../../config/mongoose");
 const Restaurant = require("../restaurants");
-const restaurantList = require("../../restaurant.json");
+const restaurantList = require("../../mock_data/restaurant.json");
 
 db.on("error", () => {
   console.log("fail to connect to mongo db!");
