@@ -1,5 +1,6 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const session = require("express-session");
 const methodOverride = require("method-override");
 const routes = require("./routes");
 require("./config/mongoose");
@@ -12,6 +13,15 @@ const port = 3000;
 // express template engine
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+// setup session
+app.use(
+  session({
+    secret: "ThisIsMySecret",
+    resave: false,
+    saveUnintialized: true,
+  })
+);
 
 // setup static files
 app.use(express.static("public"));

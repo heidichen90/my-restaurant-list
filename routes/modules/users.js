@@ -7,17 +7,17 @@ const bcrypt = require("bcryptjs");
 const Restaurant = require("../../models/restaurants");
 const User = require("../../models/users");
 
+router.get("/login", (rea, res) => {
+  res.render("login");
+});
+
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/restaurants",
     failureRedirect: "/users/login",
   })
 );
-
-router.post("/login", (rea, res) => {
-  res.send("login");
-});
 
 router.get("/register", (req, res) => {
   res.render("register");
@@ -73,7 +73,8 @@ router.post("/register", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-  res.send("logout");
+  req.logout();
+  res.redirect("/");
 });
 
 module.exports = router;

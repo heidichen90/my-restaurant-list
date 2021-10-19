@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const User = require("../models/user");
+const User = require("../models/users");
 
 module.exports = (app) => {
   //passport setup
@@ -12,6 +12,7 @@ module.exports = (app) => {
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
       User.findOne({ email })
         .then((user) => {
+          console.log(user);
           if (!user) {
             return done(null, false, {
               message: "This email is not registered.",
@@ -22,7 +23,7 @@ module.exports = (app) => {
               message: "Email or Password incorrect.",
             });
           }
-
+          console.log("find user");
           return done(null, user);
         })
         .catch((err) => done(err, false));
