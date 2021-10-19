@@ -1,14 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 
 const bcrypt = require("bcryptjs");
 
 const Restaurant = require("../../models/restaurants");
 const User = require("../../models/users");
 
-router.get("/login", (req, res) => {
-  res.render("login");
-});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/users/login",
+  })
+);
 
 router.post("/login", (rea, res) => {
   res.send("login");
@@ -40,7 +45,6 @@ router.post("/register", (req, res) => {
     });
   } else {
     //check if user exist
-    console.log("check if user exists");
     User.findOne({ email })
       .then((user) => {
         if (user) {
