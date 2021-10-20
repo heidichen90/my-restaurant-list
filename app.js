@@ -6,10 +6,14 @@ const routes = require("./routes");
 const flash = require("connect-flash");
 require("./config/mongoose");
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const usePassport = require("./config/passport");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 // express template engine
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -18,7 +22,7 @@ app.set("view engine", "handlebars");
 // setup session
 app.use(
   session({
-    secret: "ThisIsMySecret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUnintialized: true,
   })

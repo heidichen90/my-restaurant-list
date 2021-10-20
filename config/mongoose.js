@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const MONGODB_URI = process.env.MONGODB_URI;
+
 //set up db connection
 mongoose.connect("mongodb://localhost/restaurant-list", {
   useUnifiedTopology: true,
