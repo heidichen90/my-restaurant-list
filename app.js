@@ -3,6 +3,7 @@ const exphbs = require("express-handlebars");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const routes = require("./routes");
+const flash = require("connect-flash");
 require("./config/mongoose");
 
 const usePassport = require("./config/passport");
@@ -33,8 +34,21 @@ app.use(express.urlencoded({ extended: true }));
 // override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
 
+//set up passport
 usePassport(app);
 
+//set up flash
+app.use(flash());
+
+//middleware to pass in flash message
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.user = req.user;
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.warning_msg = req.flash("warning_msg");
+  res.locals.error_msg = req.flash("error");
+  next();
+});
 // set up router
 app.use(routes);
 

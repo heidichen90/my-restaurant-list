@@ -15,6 +15,7 @@ module.exports = (app) => {
         .then((user) => {
           console.log(user);
           if (!user) {
+            console.log(">>");
             return done(null, false, {
               message: "This email is not registered.",
             });
