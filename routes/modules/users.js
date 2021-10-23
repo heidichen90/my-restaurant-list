@@ -4,7 +4,6 @@ const passport = require("passport");
 
 const bcrypt = require("bcryptjs");
 
-const Restaurant = require("../../models/restaurants");
 const User = require("../../models/users");
 
 router.get("/login", (rea, res) => {
