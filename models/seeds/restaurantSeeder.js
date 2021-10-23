@@ -23,7 +23,6 @@ db.once("open", () => {
           })
         )
         .then((user) => {
-          console.log(user);
           const userId = user._id;
           return Promise.all(
             restaurantList.results.map((restaurant, index) => {

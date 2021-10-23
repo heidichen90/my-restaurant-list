@@ -32,7 +32,6 @@ module.exports = (app) => {
     })
   );
 
-  console.log("facebook strategy");
   //Facebook strategy
   passport.use(
     new FacebookStrategy(
