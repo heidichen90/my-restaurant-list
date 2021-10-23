@@ -2,8 +2,9 @@
 
 my restaurant list is a website which provide restaurant detail. This website is built based on Node.js and Express
 
+![](images/my-restaurant-list4.png)
 ![](images/my-restaurant-list1.png)
-![](images/my-redtaurant-list2.png)
+![](images/my-restaurant-list2.png)
 ![](images/my-restaurant-list3.png)
 
 ## Feature
@@ -16,6 +17,8 @@ my restaurant list is a website which provide restaurant detail. This website is
 - Delete existing restaurant record
 - Add new restaurant
 - Sory by name A-Z, name Z-A, catrogry, rating, location
+- Register user account with email
+- Register user account with facebook
 
 ## Getting Started
 
@@ -44,16 +47,6 @@ The website should start running on
 Load up seed data
 
     npm run seed
-
-## Built With
-
-- [Node.js](https://nodejs.org/en/) (v10.15.0)
-- [Express](https://expressjs.com/) (v4.17.1)
-- [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) (v5.3.2)
-- [Bootstrap](https://getbootstrap.com/) (v4.3.1)
-- [Mongoose ODM](https://mongoosejs.com/) (v5.12.13)
-- [Mongodb](https://www.mongodb.com/) (v4.2.14)
-- [method-override](https://www.npmjs.com/package/method-override) (v3.0.0)
 
 ## Author
 
