@@ -6,6 +6,7 @@ router.get("/", (req, res) => {
   const userId = req.user._id;
   Restaurant.find({ userId })
     .lean()
+    .sort({ name_en: "asc" })
     .then((restaurants) => {
       res.render("index", { restaurants });
     })
@@ -55,6 +56,7 @@ router.get("/sort/:criteria/:order", (req, res) => {
   const searchCriteria = new Object();
   searchCriteria[req.params.criteria] = req.params.order;
   const userId = req.user._id;
+  console.log(searchCriteria);
   Restaurant.find({ userId })
     .lean()
     .sort(searchCriteria)
