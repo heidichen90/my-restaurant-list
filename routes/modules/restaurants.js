@@ -8,7 +8,8 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const restaurants = new Restaurant({ ...req.body });
+  const userId = req.user._id;
+  const restaurants = new Restaurant({ ...req.body, userId });
   return restaurants
     .save()
     .then(() => {
@@ -40,10 +41,11 @@ router.get("/:id/edit", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
+  const userId = req.user._id;
   const restaurantId = req.params.id;
   return Restaurant.findById(restaurantId)
     .then((restaurant) => {
-      Object.assign(restaurant, { ...req.body });
+      Object.assign(restaurant, { ...req.body, userId });
       return restaurant.save();
     })
     .then(() => {
