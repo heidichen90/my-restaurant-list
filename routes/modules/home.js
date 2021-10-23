@@ -4,7 +4,7 @@ const Restaurant = require("../../models/restaurants");
 
 router.get("/", (req, res) => {
   const userId = req.user._id;
-  Restaurant.find()
+  Restaurant.find({ userId })
     .lean()
     .then((restaurants) => {
       res.render("index", { restaurants });
@@ -17,7 +17,8 @@ router.get("/search/", (req, res) => {
   if (keyword === "") {
     res.redirect("/");
   }
-  return Restaurant.find()
+  const userId = req.user._id;
+  return Restaurant.find({ userId })
     .lean()
     .then((restaurants) => {
       const restaurantResult = restaurants.filter(
@@ -36,7 +37,8 @@ router.get("/search/sort/:criteria/:order", (req, res) => {
   if (keyword === "") {
     res.redirect("/");
   }
-  return Restaurant.find()
+  const userId = req.user._id;
+  return Restaurant.find({ userId })
     .lean()
     .sort(searchCriteria)
     .then((restaurants) => {
@@ -52,7 +54,8 @@ router.get("/search/sort/:criteria/:order", (req, res) => {
 router.get("/sort/:criteria/:order", (req, res) => {
   const searchCriteria = new Object();
   searchCriteria[req.params.criteria] = req.params.order;
-  Restaurant.find()
+  const userId = req.user._id;
+  Restaurant.find({ userId })
     .lean()
     .sort(searchCriteria)
     .then((restaurants) => {

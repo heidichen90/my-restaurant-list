@@ -14,9 +14,7 @@ module.exports = (app) => {
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
       User.findOne({ email })
         .then((user) => {
-          console.log(user);
           if (!user) {
-            console.log(">>");
             return done(null, false, {
               message: "This email is not registered.",
             });
@@ -45,7 +43,6 @@ module.exports = (app) => {
         profileFields: ["email", "displayName"],
       },
       (accessToken, refreshToken, profile, done) => {
-        console.log(profile._json);
         const { email, name } = profile._json;
         User.findOne({ email }).then((user) => {
           if (user) {
