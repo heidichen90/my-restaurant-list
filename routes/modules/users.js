@@ -29,7 +29,7 @@ router.post("/register", (req, res) => {
   const errors = [];
   //check register form field
   if (!email || !password || !confirmPassword) {
-    errors.push({ message: "All fields required." });
+    errors.push({ message: "Missing required field." });
   }
   if (password !== confirmPassword) {
     errors.push({ message: "Password didnt match Confirm Password." });
