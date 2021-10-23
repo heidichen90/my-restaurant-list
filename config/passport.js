@@ -5,12 +5,12 @@ const User = require("../models/users");
 const bcrypt = require("bcryptjs");
 
 module.exports = (app) => {
-  //passport setup
+  // passport setup
   app.use(passport.initialize());
   app.use(passport.session());
 
   passport.use(
-    //Local Strategy
+    // Local Strategy
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
       User.findOne({ email })
         .then((user) => {
@@ -32,7 +32,7 @@ module.exports = (app) => {
     })
   );
 
-  //Facebook strategy
+  // Facebook strategy
   passport.use(
     new FacebookStrategy(
       {
@@ -47,7 +47,7 @@ module.exports = (app) => {
           if (user) {
             return done(null, user);
           }
-          //if user dont exist, create random password and create a user in our database
+          // if user dont exist, create random password and create a user in our database
           const randomPassword = Math.random().toString(36).slice(-8);
           bcrypt
             .genSalt(10)
@@ -66,7 +66,7 @@ module.exports = (app) => {
     )
   );
 
-  //Session
+  // Session
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });

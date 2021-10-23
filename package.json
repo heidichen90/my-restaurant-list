@@ -8,7 +8,7 @@
     "dev": "nodemon app.js",
     "seed": "node models/seeds/restaurantSeeder.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "style": "standard --fix \"*.js\""
+    "style": "standard --fix "
   },
   "keywords": [],
   "author": "",
@@ -28,5 +28,11 @@
   },
   "devDependencies": {
     "standard": "^16.0.4"
+  },
+  "standard": {
+    "ignore": [
+      "/node_modules",
+      "/public"
+    ]
   }
 }
