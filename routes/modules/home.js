@@ -3,6 +3,7 @@ const router = express.Router();
 const Restaurant = require("../../models/restaurants");
 
 router.get("/", (req, res) => {
+  const userId = req.user._id;
   Restaurant.find()
     .lean()
     .then((restaurants) => {
