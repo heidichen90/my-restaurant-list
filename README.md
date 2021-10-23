@@ -48,10 +48,6 @@ Load up seed data
 
     npm run seed
 
-Load up seed data
-
-    npm run seed
-
 To use facebook strategy
 
     please change .env.example to .env and change the SKIP paramter to your own facebook strategy creidentials
